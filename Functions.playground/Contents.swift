@@ -76,3 +76,19 @@ print("minimum = \(min) and maximum = \(max)")
 var result = findMin(99, 100)
 print("Maximum is = \(result.maxV)")
 print("Minimum is = \(result.minV)")
+
+
+func dateTimeFormat(from date: Date) -> (year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int) {
+    let calender = Calendar.current
+    let components = calender.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+    return (
+        components.year ?? 0,
+        components.month ?? 0,
+        components.day ?? 0,
+        components.hour ?? 0,
+        components.minute ?? 0,
+        components.second ?? 0
+    )
+}
+let date = Date()
+print(dateTimeFormat(from: date))
