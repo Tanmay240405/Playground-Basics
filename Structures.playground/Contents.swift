@@ -102,6 +102,7 @@ struct Temp1 {
     
 }
 
+
 struct Temp2 {
     var celsius: Double
     var fahrenheit: Double {                                            //Computed Properties
@@ -111,4 +112,54 @@ struct Temp2 {
                                                                         //not able to do it in function
 let currTemp = Temp2(celsius: 0.0)                                      //memory allocated to only celsius -> instance is let then also allow it to change -> not updating just computing -> WHERE IS FAHRENHEIT STORED AFTER COMPUTING?? -> it is assigned when we write curr.fahrenheit -> otherwise it is stored in on fly memory after being computed
 print(currTemp.fahrenheit)                                              //fahrenheit also now accessable through struct
-                                                                                
+
+//PROPERTY OBSERVER
+
+struct StepCounter {
+    var totalSteps: Int = 0 {
+        willSet {
+            print("About to set totalSteps \(newValue)")                    //assign newValue to totalSteps -> and totalsteps will become oldvalue...
+    
+        }
+        didSet {                                                            // cannot access newvalue in it
+            if totalSteps > oldValue {
+                print ("Added \(totalSteps - oldValue) steps")
+            }
+        }
+    }
+    mutating func increment() {
+        totalSteps += 1
+    }
+}
+
+var counter = StepCounter()
+counter.totalSteps = 40
+counter.totalSteps = 120
+counter.totalSteps = 120
+counter.increment()                                 //totalsteps becomes 121
+
+//TYPE PROPERTIES AND METHODS
+
+struct Temp3 {
+    @MainActor static var colling = 0                                                       //static means only one copy will be created
+    @MainActor static var boilingPoint = 100.0
+    static func convertedFromFahrenheit(_ tempInFahrenheit: Double) -> Double {
+        (((tempInFahrenheit - 32) * 5) / 9)
+    }
+}
+
+let boilingPoint = Temp3.boilingPoint
+let currentTemp1 = Temp3.convertedFromFahrenheit(99)
+let positiveNumber = abs(-4.14)
+
+print(boilingPoint)
+print(currentTemp1)
+print(positiveNumber)
+let temp4 = Temp3.convertedFromFahrenheit(99.0)
+print(temp4)
+
+
+
+
+
+
