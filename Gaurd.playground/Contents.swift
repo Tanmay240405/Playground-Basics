@@ -1,6 +1,6 @@
 import UIKit
 
-//Gaurd -> proper tracking of your code -> when we want an early exit -> opposite of "if"
+//Guard -> proper tracking of your code -> when we want an early exit -> opposite of "if"
 
 var birthdayIdToday = true
 var invitedGuest = ["Guest1"]
@@ -31,10 +31,11 @@ func Book(title: String?, price: Double?, pages: Int?) {
         print("Missing Name, Price or Pages")
         return
     }
-    print("\(theTitle) cost \(thePrice) and has \(thePages) pages")
+    print("\(theTitle) cost is \(thePrice) and has \(thePages) pages")
 }
 
 Book(title: nil, price: 100, pages: 100)
+Book(title: "Harry Potter", price: 1100, pages: 100)
 
 func Divide(number: Int, divisor: Int) {
     guard divisor != 0 else {
