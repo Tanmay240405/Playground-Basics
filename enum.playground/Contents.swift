@@ -19,7 +19,7 @@ enum CompassPoint {
 enum Coffeesize {
     case small, medium, large
 }
-var MyCoffeeSize: CoffeeSize = .medium       // type inference
+var MyCoffeeSize: CoffeeSize = .medium       // this is type inference
 
 var MyCoffeeSize1: CoffeeSize = .medium
 MyCoffeeSize1 = .large
